@@ -8,7 +8,9 @@
     "build": "tsc -b ./src && webpack --mode production",
     "dev": "concurrently -s first -k npm:dev:*",
     "dev:server": "nodemon -w src -e 'tsx ts' -x ts-node -T --dir src ./server",
-    "dev:webpack": "webpack-dev-server"
+    "dev:webpack": "webpack-dev-server",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "repository": {
     "type": "git",
@@ -40,6 +42,10 @@
     "webpack-cli": "^3.3.11"
   },
   "devDependencies": {
+    "@storybook/addon-actions": "^5.3.18",
+    "@storybook/addon-links": "^5.3.18",
+    "@storybook/addons": "^5.3.18",
+    "@storybook/react": "^5.3.18",
     "concurrently": "^5.1.0",
     "nodemon": "^2.0.3",
     "ts-node": "^8.8.2",
