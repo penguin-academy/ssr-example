@@ -10,9 +10,11 @@ const app = express()
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'pug')
 
+app.use(express.static(__dirname + '/../public'))
+
 app.get('/', (req, res) => {
   const reactComp = ReactDomServer.renderToString(<Example />)
-  res.render('index', { body: reactComp })
+  res.render('index', { body: reactComp, bundle: 'home.js' })
 })
 
 app.listen(3000, () => console.info('Running on 3000'))
