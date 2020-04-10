@@ -1,5 +1,5 @@
 module.exports = {
-  entry: { bundle: './src/client/home.tsx' },
+  entry: { home: './src/client/home.tsx' },
   output: { path: __dirname + '/public' },
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx', '.json']
@@ -11,5 +11,16 @@ module.exports = {
         loader: require.resolve('babel-loader')
       }
     ]
+  },
+  devServer: {
+    proxy: {
+      '**/*': {
+        target: 'http://localhost:3000',
+        bypass: req => {
+          if (req.headers.accept.indexOf('html')) return
+          return req.url
+        }
+      }
+    }
   }
 }
